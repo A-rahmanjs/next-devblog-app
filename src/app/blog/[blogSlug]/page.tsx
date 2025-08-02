@@ -1,32 +1,30 @@
-import { BLOG_POSTS } from "@/utils/constants";
+import { getAllPosts } from "@/lib/blogData";
 import BlogElement from "@/components/BlogElement";
+import { notFound } from "next/navigation";
 
-// types
 type PageProps = {
   params: {
     blogSlug: string;
   };
 };
-// types
 
-function BlogSlug({ params }: PageProps) {
-  const getBlogPost = BLOG_POSTS.find((post) => {
-    return post.slug === `blog/${params.blogSlug}`;
-  });
+export default function BlogSlugPage({ params }: PageProps) {
+  const posts = getAllPosts(); // returns BlogPost[]
+  const blogPost = posts.find(
+    (post) => post.slug === `blog/${params.blogSlug}`
+  );
 
-  if (!getBlogPost) {
-    return <div>Post not found.</div>;
+  if (!blogPost) {
+    notFound(); // uses Next.js 404 page
   }
+
   return (
-    <>
-      <BlogElement
-        title={getBlogPost.blogTitle}
-        description={getBlogPost.description}
-        content={getBlogPost.content}
-        date={getBlogPost.date}
-      />
-    </>
+    <BlogElement
+      title={blogPost.blogTitle}
+      description={blogPost.description}
+      content={blogPost.content}
+      date={blogPost.date}
+      slug={blogPost.slug}
+    />
   );
 }
-
-export default BlogSlug;

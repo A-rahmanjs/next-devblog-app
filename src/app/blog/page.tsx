@@ -1,10 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { BLOG_POSTS } from "../../utils/constants";
-import { format } from "date-fns";
 
-function Blog() {
-  if (!BLOG_POSTS.length) {
+import { format } from "date-fns";
+import { getAllPosts } from "@/lib/blogData";
+
+async function Blog() {
+  const theBlogPosts = getAllPosts();
+
+  if (!theBlogPosts.length) {
     return (
       <>
         <h1>No Blog Posts!</h1>
@@ -19,7 +22,7 @@ function Blog() {
       <h1>Blog Posts:</h1>
 
       <ul>
-        {BLOG_POSTS.map(({ blogTitle, slug, description, date }, index) => {
+        {theBlogPosts.map(({ blogTitle, slug, description, date }, index) => {
           return (
             <li key={index}>
               <h2>

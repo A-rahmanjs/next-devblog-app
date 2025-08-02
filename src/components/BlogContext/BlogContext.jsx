@@ -1,7 +1,7 @@
 import React from 'react';
 
-function NewBlogPost() {
+function BlogContext() {
   return <div></div>;
 }
 
-export default NewBlogPost;
+export default BlogContext;

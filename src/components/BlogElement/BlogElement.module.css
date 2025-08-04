@@ -1,0 +1,153 @@
+.wrapper {
+  border: 1px solid var(--color-gray-200);
+  border-radius: 1rem;
+  margin: 0 50px 2rem;
+  background: var(--color-decorative-100);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.title {
+  padding: 1.5rem 50px;
+  margin: 0;
+  font-size: 2.2rem;
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.wrapper:hover .title {
+  color: var(--color-primary-500);
+}
+.contentContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2.5rem 50px;
+  transition: all 0.3s ease;
+  color: var(--color-text);
+  background-color: var(--color-decorative-100);
+  border-top: 1px solid var(--color-gray-200);
+}
+.settings {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  height: 40px; /* Fixed height to prevent layout shift */
+  overflow: visible;
+  z-index: 10;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 20px;
+  background-color: var(--color-error);
+  border: 1px solid rgba(255, 69, 58, 0.3);
+  border-radius: 6px;
+  padding: 8px 15px;
+  text-align: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 100px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.settings[data-open="true"] .deleteButton {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.deleteButton:hover {
+  background-color: rgba(255, 69, 58, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: white;
+  color: #ff453a;
+}
+
+.deleteButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.settingsButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #9b9b9b;
+  position: relative;
+  z-index: 2;
+}
+
+.settingsButton:hover {
+  background-color: rgba(155, 155, 155, 0.1);
+  color: #ffffff;
+}
+
+.settings[data-open="true"] .settingsButton {
+  transform: rotate(90deg);
+  color: #ffffff;
+  background-color: rgba(155, 155, 155, 0.2);
+}
+
+.dateAndUser {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(155, 155, 155, 0.2);
+  transition: border-color 0.3s ease;
+}
+
+.wrapper:hover .dateAndUser {
+  border-color: rgba(155, 155, 155, 0.4);
+}
+.user {
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #ffdf32, #ffc107);
+}
+
+.user:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,35 +1,38 @@
 import React from "react";
 import Link from "next/link";
-
+import styles from "./Blog.module.css";
 import { format } from "date-fns";
 import { getAllPosts } from "@/lib/blogData";
 
-async function Blog() {
-  const theBlogPosts = getAllPosts();
+function Blog() {
+  const BlogPosts = getAllPosts();
 
-  if (!theBlogPosts.length) {
+  if (!BlogPosts.length) {
     return (
-      <>
-        <h1>No Blog Posts!</h1>
+      <div className={styles.noPosts}>
+        <h1 className={styles.noPostsTitle}>No Blog Posts!</h1>
 
-        <Link href="/create">Create a new one</Link>
-      </>
+        <button>
+          <Link href="/create">Create a new one</Link>
+        </button>
+      </div>
     );
   }
-
   return (
-    <main>
-      <h1>Blog Posts:</h1>
+    <main className={styles.allContainer}>
+      <h1 className={styles.blogPostsTitle}>Blog Posts:</h1>
 
       <ul>
-        {theBlogPosts.map(({ blogTitle, slug, description, date }, index) => {
+        {BlogPosts.map(({ blogTitle, slug, description, date }, index) => {
           return (
-            <li key={index}>
-              <h2>
+            <li key={index} className={styles.blogPostContainer}>
+              <h2 className={styles.blogTitle}>
                 <Link href={slug}>{blogTitle}</Link>
               </h2>
-              <span>Date Published: {format(date, "yyyy-MM-dd")} </span>
-              <div className="description">
+              <span className={styles.date}>
+                Date Published: {format(date, "yyyy-MM-dd")}
+              </span>
+              <div className={styles.description}>
                 <p>{description}</p>
               </div>
             </li>

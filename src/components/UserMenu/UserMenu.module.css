@@ -1,0 +1,88 @@
+.userMenu {
+  position: relative;
+  margin-left: auto;
+}
+
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-decorative-200);
+  border: 1px solid var(--color-gray-300);
+  border-radius: 20px;
+  padding: 6px 12px;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.userButton:hover {
+  background: var(--color-decorative-300);
+  border-color: var(--color-gray-400);
+}
+
+
+.userEmail {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-text);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background-color: var(--color-decorative-100);
+  border-radius: 8px;
+  box-shadow: var(--shadow-card);
+  min-width: 200px;
+  z-index: 50;
+  overflow: hidden;
+  border: 1px solid var(--color-gray-200);
+  animation: fadeIn 0.15s ease-out;
+  color: var(--color-text);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.15s ease;
+}
+
+.menuItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #5e5e5e;
+}
+
+.menuIcon {
+
+  flex-shrink: 0;
+}
+
+.menuItem:hover .menuIcon {
+  color: #5e5e5e;
+}

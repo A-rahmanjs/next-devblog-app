@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./Create.module.css";
 
 export type BlogPost = {
   blogTitle: string;
@@ -11,11 +12,12 @@ export type BlogPost = {
 };
 
 function CreateNewBlogPost() {
-  const [blogTitleName, setBlogTitleName] = useState("Blog");
-  const [blogDescription, setBlogDescription] = useState("Description");
-  const [blogContent, setBlogContent] = useState("123...");
+  const [blogTitleName, setBlogTitleName] = useState("");
+  const [blogDescription, setBlogDescription] = useState("");
+  const [blogContent, setBlogContent] = useState("");
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const router = useRouter();
+  const id = React.useId();
 
   useEffect(() => {
     async function fetchPosts() {
@@ -57,37 +59,55 @@ function CreateNewBlogPost() {
   }
 
   return (
-    <>
-      <h1>New Blog Post...</h1>
-      <div className="container">
+    <div className={styles.container}>
+      <h1 className={styles.title}>New Blog Post...</h1>
+      <div className={styles.inputContainer}>
         <form onSubmit={handleSubmit}>
-          <label>Blog Title:</label>
+          <label htmlFor={`${id}-title`} className={styles.textLabel}>
+            Blog Title:
+          </label>
           <input
+            className={styles.textinput}
             required
+            id={`${id}-title`}
             type="text"
             value={blogTitleName}
+            placeholder="Blog title..."
             onChange={(e) => setBlogTitleName(e.target.value)}
           />
-
-          <label>Blog Description:</label>
+          <br />
+          <label htmlFor={`${id}-description`} className={styles.textLabel}>
+            Blog Description:
+          </label>
           <input
+            className={styles.textinput}
+            id={`${id}-description`}
             type="text"
+            placeholder="Blog description..."
             value={blogDescription}
             onChange={(e) => setBlogDescription(e.target.value)}
           />
 
-          <label>Blog Content:</label>
-          <input
+          <br />
+          <label htmlFor={`${id}-content`} className={styles.textLabel}>
+            Blog Content:
+          </label>
+          <textarea
+            className={styles.textArea}
             required
-            type="text"
+            id={`${id}-content`}
+            placeholder="Blog content..."
             value={blogContent}
             onChange={(e) => setBlogContent(e.target.value)}
           />
+          <br />
 
-          <button type="submit">Create</button>
+          <button type="submit" className={styles.submit}>
+            Create
+          </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

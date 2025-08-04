@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/blogData";
 import BlogElement from "@/components/BlogElement";
 import { notFound } from "next/navigation";
+import { BlogPost } from "@/app/create/page";
 
 type PageProps = {
   params: {
@@ -9,22 +10,22 @@ type PageProps = {
 };
 
 export default function BlogSlugPage({ params }: PageProps) {
-  const posts = getAllPosts(); // returns BlogPost[]
+  const posts = getAllPosts();
   const blogPost = posts.find(
     (post) => post.slug === `blog/${params.blogSlug}`
   );
-
+ const {blogTitle, description, content, date, slug} = blogPost as BlogPost;
   if (!blogPost) {
-    notFound(); // uses Next.js 404 page
+    notFound();
   }
 
   return (
     <BlogElement
-      title={blogPost.blogTitle}
-      description={blogPost.description}
-      content={blogPost.content}
-      date={blogPost.date}
-      slug={blogPost.slug}
+      title={blogTitle}
+      description={description}
+      content={content}
+      date={date}
+      slug={slug}
     />
   );
 }

@@ -22,22 +22,24 @@ function BlogElement({
   const settingsRef = React.useRef<HTMLButtonElement>(null);
   const { createToast } = React.useContext(ToastContext);
 
-
   useOnClickOutside(
     settingsRef,
     React.useCallback(() => {
       setIsOpen(false);
     }, [])
   );
+
   React.useEffect(() => {
     setUserName(window.localStorage.getItem('userName'))
   },[])
+
+
    function handleDeleteBlog(blogSlug: string) {
+     deletePost(blogSlug)
      setTimeout(() => {
-      deletePost(blogSlug)
       createToast('Post Deleted', 'notice')
-    }, 200)
-    router.push("/blog");
+      router.push("/blog");
+    }, 300)
   }
 
   return (

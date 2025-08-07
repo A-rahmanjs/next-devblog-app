@@ -20,13 +20,7 @@ type BlogContextType = {
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
 
 function BlogProvider({ children }: { children: React.ReactNode }) {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([{
-    blogTitle: 'Test Blog',
-    date: new Date(2025, 6, 7, 1, 30),
-    slug: `blog/first-post-slug`,
-    description: 'A test Blog.',
-    content: 'This is purely made for showcasing purposes.',
-  }]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
 

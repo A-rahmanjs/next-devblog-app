@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--color-primary-600);
+    color: var(--color-text);
+    text-align: center;
+    transition: none !important;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .text {
+    margin-bottom: 2rem;
+  }
+  
+  .link {
+    color: var(--color-primary-600);
+    text-decoration: underline;
+  }

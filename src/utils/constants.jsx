@@ -5,7 +5,7 @@ export const LINKS = [
     href: "/blog",
   },
   {
-    label: "+",
+    label: "ADD",
     id: crypto.randomUUID(),
     href: "/create",
   },
@@ -37,6 +37,12 @@ export const LIGHT_COLORS = {
   "--color-gray-700": "hsl(50deg 10% 25%)",
   "--color-gray-900": "hsl(50deg 20% 10%)",
   "--color-gray-1000": "black",
+  // Shadow variables for light theme
+  "--shadow-card": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+  "--shadow-page": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+  // Outline variables (not used in light theme, but defined for consistency)
+  "--outline-card": "none",
+  "--outline-page": "none",
 };
 
 export const DARK_COLORS = {
@@ -48,6 +54,12 @@ export const DARK_COLORS = {
   "--color-primary-900": "hsl(50deg 100% 25%)",
   "--color-primary-contrast": "black",
   "--color-secondary-500": "hsl(328deg 100% 50%)",
+  // Shadow variables for dark theme (replaced with outlines)
+  "--shadow-card": "none",
+  "--shadow-page": "none",
+  // Outline variables for dark theme
+  "--outline-card": "1px solid var(--color-gray-700)",
+  "--outline-page": "1px solid var(--color-gray-700)",
   "--color-decorative-100": "hsl(256deg 20% 4%)",
   "--color-decorative-200": "hsl(256deg 30% 10%)",
   "--color-decorative-300": "hsl(256deg 30% 15%)",

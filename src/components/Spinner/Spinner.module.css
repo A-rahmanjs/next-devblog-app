@@ -8,13 +8,12 @@
   display: block;
   width: min-content;
   height: min-content;
+  /* @ts-ignore */
   animation: spin 1000ms linear infinite;
-  opacity: 0.8;
-  color: var(--color-primary-500);
+  opacity: 0.6;
 }
 
 .wrapper svg {
   display: block;
   max-width: revert;
-  fill: currentColor;
 }

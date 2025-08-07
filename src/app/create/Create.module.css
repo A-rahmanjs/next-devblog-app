@@ -1,46 +1,123 @@
 .container {
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
-  padding: 2.5rem;
-  gap: 2.5rem;
+  padding: 1.25rem 1rem;
+  gap: 1.5rem;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  border-radius: 16px;
   background-color: var(--color-decorative-100);
-  border: 1px solid var(--color-gray-200);
   color: var(--color-text);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-page);
+  border: var(--outline-page);
+  min-height: calc(100vh - 60px);
+  
+  @media (min-width: 480px) {
+    padding: 1.5rem 1.25rem;
+    gap: 1.75rem;
+  }
+  
+  @media (min-width: 768px) {
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+    max-width: 90%;
+    border-radius: 1rem;
+    margin: 1rem auto 2rem;
+    min-height: auto;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 2.5rem;
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 2rem auto 3rem;
+  }
+  
+  @media (min-width: 1280px) {
+    max-width: 1100px;
+  }
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 800;
   color: var(--color-text);
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin: 0.5rem 0 1rem;
   letter-spacing: -0.5px;
   text-shadow: var(--text-shadow);
+  line-height: 1.2;
+  width: 100%;
+  
+  @media (min-width: 480px) {
+    font-size: 2.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 3.5rem;
+    margin-bottom: 2.5rem;
+  }
 }
 
 .inputContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem;
+  max-width: 100%;
+  
+  @media (min-width: 480px) {
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    gap: 1.75rem;
+    max-width: 90%;
+  }
+  
+  @media (min-width: 1024px) {
+    gap: 2rem;
+    max-width: 100%;
+  }
 }
 
 .textinput {
   background-color: var(--color-decorative-200);
   color: var(--color-text);
   width: 100%;
-  height: 56px;
-  padding: 14px 20px;
+  height: 48px;
+  padding: 12px 16px;
   border: 2px solid var(--color-gray-300);
-  border-radius: 12px;
-  font-size: 18px;
+  border-radius: 10px;
+  font-size: 16px;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0.5rem 0 1rem;
+  transition: all 0.2s ease;
+  
+  @media (min-width: 480px) {
+    height: 52px;
+    padding: 14px 18px;
+    font-size: 17px;
+  }
+  
+  @media (min-width: 768px) {
+    height: 56px;
+    padding: 14px 20px;
+    font-size: 18px;
+    margin: 1rem 0 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    margin: 1.5rem 0 2rem;
+  }
 }
 
 .textinput:focus {
@@ -54,20 +131,40 @@
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  margin-bottom: 12px;
 }
 
 .textArea {
-  background-color: rgba(0, 0, 0, 0.1);
+  margin: 0.5rem 0 1rem;
+  background-color: var(--color-decorative-200);
   width: 100%;
-  min-height: 180px;
-  padding: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  font-size: 18px;
+  min-height: 200px;
+  padding: 16px;
+  color: var(--color-text);
+  border: 2px solid var(--color-gray-300);
+  border-radius: 10px;
+  font-size: 16px;
   font-weight: 500;
   resize: vertical;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
+  line-height: 1.6;
+  
+  @media (min-width: 480px) {
+    min-height: 220px;
+    padding: 18px;
+    font-size: 17px;
+  }
+  
+  @media (min-width: 768px) {
+    min-height: 240px;
+    padding: 20px;
+    font-size: 18px;
+    margin: 1rem 0 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    min-height: 260px;
+    margin: 1.5rem 0 2rem;
+  }
 }
 
 .textArea:focus {
@@ -77,20 +174,46 @@
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
 }
 
+[data-color-theme="light"] .submit {
+  border: 2px solid rgba(0, 0, 0, 0.721);
+}
 .submit {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  padding: 14px 40px;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  color: var(--color-text);
+  border: 2px dotted rgba(255, 255, 255, 0.2);
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  width: fit-content;
-  margin-top: 2rem;
+  width: 100%;
+  margin: 1rem 0 0.5rem;
   position: relative;
   overflow: hidden;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  gap: 1rem;
+  
+  @media (min-width: 480px) {
+    font-size: 1.05rem;
+    padding: 12px 36px;
+  }
+  
+  @media (min-width: 768px) {
+    width: auto;
+    min-width: 200px;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    margin: 1.5rem 0 1rem;
+    border-radius: 12px;
+  }
+  
+  @media (min-width: 1024px) {
+    margin: 2rem 0 1.5rem;
+  }
 }
 
 .submit::before {
@@ -105,14 +228,32 @@
     transparent,
     rgba(255, 255, 255, 0.2),
     transparent
-  );
-  transition: 0.5s;
-}
+    );
+    transition: 0.5s;
+  }
+  [data-color-theme="light"] .submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.836),
+    transparent
+    );
+  }
 
 .submit:hover {
   border-color: rgba(255, 255, 255, 0.4);
-
+  
 }
+[data-color-theme="light"] .submit:hover {
+  border-color: rgba(0, 0, 0, 0.721);
+}
+
 
 .submit:hover::before {
   left: 100%;
@@ -123,24 +264,81 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    padding: 1.5rem;
+/* Dark theme adjustments */
+[data-color-theme="dark"] .textArea {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-color-theme="dark"] .submit {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Focus states */
+.textinput:focus,
+.textArea:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  background-color: var(--color-decorative-100);
+  box-shadow: 0 0 0 4px var(--color-primary-100);
+}
+
+[data-color-theme="dark"] .textArea:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+}
+
+/* Loading state */
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Animation for loading state */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.submit.loading::after {
+  content: '';
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  margin-left: 0.5rem;
+  animation: spin 0.8s linear infinite;
+}
+
+[data-color-theme="light"] .submit.loading::after {
+  border-top-color: var(--color-text);
+}
+
+.container .svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(30, 30, 30);
+  width: 600px;
+  height: 600px;
+
+  z-index: 0; 
+  pointer-events: none; 
+  opacity: 0.05; 
+
+  @media (max-width: 1024px) {
+    top: 50%;
+    width: 300px;
+    height: 300px;
+    
   }
-  
-  .title {
-    font-size: 2.5rem;
-  }
-  
-  .textinput,
-  .textArea {
-    padding: 12px;
-    height: auto;
-    min-height: 48px;
-  }
-  
-  .textinput {
-    height: 48px;
+  @media (max-width: 690px) {
+    top: 50%;
+    width: 240px;
+    height: 240px;
+    
   }
 }

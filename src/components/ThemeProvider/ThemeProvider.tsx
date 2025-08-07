@@ -4,8 +4,7 @@ import {
   LIGHT_TOKENS,
   DARK_TOKENS,
 } from "@/utils/constants";
-
-import Cookie from "js-cookie";
+import Cookie from 'js-cookie'
 
 const ThemeContext = createContext<{
   theme: string;

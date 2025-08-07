@@ -1,11 +1,18 @@
+import React from 'react';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import BlogProvider from "@/components/BlogProvider/BlogProvider";
 import { cookies } from "next/headers";
 import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/ThemeProvider";
-const inter = Inter({ subsets: ["latin"] });
 import {LIGHT_TOKENS, DARK_TOKENS} from "@/utils/constants";
+import ToastProvider from '@/components/ToastProvider'
+import ToastShelf from '@/components/ToastShelf'
+import Footer from '@/components/Footer';
+
+const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "Devblog",
@@ -20,10 +27,14 @@ export default async function RootLayout({
   const savedValue = (await cookies()).get("color-theme");
   const theme = savedValue?.value || "light";
   return (
+    <BlogProvider>
+
     <html lang="en"
     data-color-theme={theme}
-        style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
-        >
+    style={(theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS) as React.CSSProperties}
+    >
+          <ToastProvider>
+
       <body className={inter.className}>
         <ThemeProvider initialTheme={theme}>
 
@@ -34,8 +45,11 @@ export default async function RootLayout({
           
         </ThemeProvider>
       
-
+        <ToastShelf />
+          <Footer />
       </body>
+          </ToastProvider>
     </html>
+          </BlogProvider>
   );
 }

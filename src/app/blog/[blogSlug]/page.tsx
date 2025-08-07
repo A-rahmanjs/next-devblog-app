@@ -1,31 +1,41 @@
-import { getAllPosts } from "@/lib/blogData";
-import BlogElement from "@/components/BlogElement";
-import { notFound } from "next/navigation";
-import { BlogPost } from "@/app/create/page";
+'use client';
+import { use } from 'react';
+import { useBlogContext } from '@/components/BlogProvider';
+import { notFound } from 'next/navigation';
+import BlogElementWrapper from '@/components/BlogElementWrapper';
+import Spinner from '@/components/Spinner';
 
 type PageProps = {
-  params: {
+  params: Promise<{
     blogSlug: string;
-  };
+  }>;
 };
 
 export default function BlogSlugPage({ params }: PageProps) {
-  const posts = getAllPosts();
-  const blogPost = posts.find(
-    (post) => post.slug === `blog/${params.blogSlug}`
+  const { blogPosts, isLoaded } = useBlogContext();
+  const { blogSlug } = use(params);
+
+  if (!isLoaded) return (
+    <div className="spinnerContainer">
+      <Spinner color="var(--color-text)" size={40} />
+    </div>
+  ) 
+
+  const blogPost = blogPosts.find(
+    (post) => post.slug === `blog/${blogSlug}`
   );
- const {blogTitle, description, content, date, slug} = blogPost as BlogPost;
+
   if (!blogPost) {
     notFound();
   }
 
   return (
-    <BlogElement
-      title={blogTitle}
-      description={description}
-      content={content}
-      date={date}
-      slug={slug}
+    <BlogElementWrapper
+      blogTitle={blogPost.blogTitle}
+      description={blogPost.description}
+      content={blogPost.content}
+      date={blogPost.date}
+      slug={blogPost.slug}
     />
   );
 }

@@ -1,19 +1,16 @@
-'use client'
 import React from 'react'
 import Link from "next/link";
-import Spinner from '@/components/Spinner'
-import { Sun, Moon } from "react-feather";
 import styles from "./Header.module.css";
 import devblogLogo from "@/images/devblogLogo.png";
-import { LINKS } from "@/utils/constants";
 import Image from "next/image";
+import NavLinksContainer from '../NavLinksContainer/NavLinksContainer';
+import UserMenuWrapper from "@/components/UserMenuWrapper/UserMenuWrapper";
+import ToggleThemeWrapper from '@/components/ToggleThemeWrapper/ToggleThemeWrapper';
 
-// Dynamically import UserMenu with no SSR
-import UserMenuWrapper from "../UserMenuWrapper/UserMenuWrapper";
-import { useTheme } from "../ThemeProvider";
 
 export default function Header() {
-  const { theme, handleToggleTheme } = useTheme();
+
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -22,20 +19,11 @@ export default function Header() {
         </Link>
         <div className={styles.navContainer}>
           <ul className={styles.links}>
-            {LINKS.map(({ label, href, id }) => (
-              <li key={id} className={styles.link}>
-                <Link href={href}>{label}</Link>
-              </li>
-            ))}
+          <NavLinksContainer />
           </ul>
           <div className={styles.actions}>
-          <React.Suspense fallback={<Spinner color="white" size={20} />}>
             <UserMenuWrapper />
-          </React.Suspense>
-        <button onClick={handleToggleTheme} className={styles.action}>
-          {theme === "light" ? <Sun size="1.5rem" /> : <Moon size="1.5rem" />}
-
-        </button>
+            <ToggleThemeWrapper />
       </div>
         </div>
       </div>

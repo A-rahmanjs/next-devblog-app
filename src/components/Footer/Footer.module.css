@@ -1,0 +1,32 @@
+.footer {
+  padding: 2rem 1rem;
+  background-color: var(--color-decorative-100);
+  border-top: 1px solid var(--color-gray-200);
+  color: var(--color-text);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  filter: var(--logo-filter, none);
+}
+
+[data-color-theme="light"] .logo {
+  --logo-filter: invert(1);
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

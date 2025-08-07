@@ -1,30 +1,27 @@
 "use client";
 import React from "react";
 import { format } from "date-fns";
-import { Settings, Trash, User } from "react-feather";
+import { Settings, Trash, User, Calendar, Paperclip } from "react-feather";
 import { useRouter } from "next/navigation";
+import { ToastContext } from "../ToastProvider";
+import { useBlogContext, BlogPost } from "@/components/BlogProvider";
 import styles from "./BlogElement.module.css";
 import useOnClickOutside from "@/hooks/useOnClickOutside/useOnClickOutside";
 
-type BlogElementProps = {
-  title: string;
-  description: string;
-  slug: string;
-  content: string;
-  date: Date | string | number;
-};
-
 function BlogElement({
-  title,
+  blogTitle,
   description,
   content,
   date,
   slug,
-}: BlogElementProps) {
+}: BlogPost) {
+  const { deletePost } = useBlogContext()
   const [isOpen, setIsOpen] = React.useState(false);
-  const [deleted, setDeleted] = React.useState(false);
+  const [userName, setUserName] = React.useState<string | null>('')
   const router = useRouter();
   const settingsRef = React.useRef<HTMLButtonElement>(null);
+  const { createToast } = React.useContext(ToastContext);
+
 
   useOnClickOutside(
     settingsRef,
@@ -32,33 +29,25 @@ function BlogElement({
       setIsOpen(false);
     }, [])
   );
-
   React.useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    if (deleted) {
-      timeout = setTimeout(() => {
-        router.push("/blog");
-      }, 175);
-    }
-    return () => clearTimeout(timeout);
-  }, [deleted, router]);
-
-  async function handleDeleteBlog(blogSlug: string) {
-    const res = await fetch(`/api/posts/delete?slug=${blogSlug}`, {
-      method: "DELETE",
-    });
-
-    if (res.ok) setDeleted(true);
-    else alert("Delete failed");
+    setUserName(window.localStorage.getItem('userName'))
+  },[])
+   function handleDeleteBlog(blogSlug: string) {
+     setTimeout(() => {
+      deletePost(blogSlug)
+      createToast('Post Deleted', 'notice')
+    }, 200)
+    router.push("/blog");
   }
 
   return (
+    <div className={styles.mainWrapper}>
     <div className={styles.wrapper}>
       <div className={styles.contentContainer}>
         <div 
           className={styles.settings} 
           data-open={isOpen}
-        >
+          >
           <button
             ref={settingsRef}
             className={styles.settingsButton}
@@ -66,7 +55,7 @@ function BlogElement({
             title="settings"
             aria-expanded={isOpen}
             aria-controls="settings-menu"
-          >
+            >
             <Settings size="2.5rem" />
           </button>
           <button
@@ -79,21 +68,29 @@ function BlogElement({
             Delete
           </button>
         </div>
+          <div className={styles.titleContainer}>
+        <Paperclip size={30}/>
+        <h1 className={styles.title}>{blogTitle}</h1>
+          </div>
 
-        <h1 className={styles.title}>{title}</h1>
-        <br />
         <div className={styles.dateAndUser}>
+          <div className={styles.dateContainer}>
+          <Calendar size={16} />
           <span>Published on: {format(date, "yyyy/MM/dd hh:mm a")}</span>
+          </div>
           <p className={styles.user}>
-            admin <User />
+            {userName} <User />
           </p>
         </div>
-        <br />
+
         <h2>{description}</h2>
-        <br />
+        <div className={styles.contents}>
+
         <p>{content}</p>
+        </div>
       </div>
     </div>
+            </div>
   );
 }
 

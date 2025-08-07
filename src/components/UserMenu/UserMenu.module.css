@@ -1,50 +1,107 @@
 .userMenu {
   position: relative;
   margin-left: auto;
+  color: var(--color-text);
+  z-index: 100;
+  
+  @media (max-width: 640px) {
+    margin-left: 0.5rem;
+  }
 }
 
 .userButton {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 0.5rem;
   background: var(--color-decorative-200);
   border: 1px solid var(--color-gray-300);
-  border-radius: 20px;
-  padding: 6px 12px;
+  border-radius: 1.25rem;
+  padding: 0.5rem 0.75rem;
   color: var(--color-text);
   cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
   transition: all 0.2s ease;
-  font-size: 0.9rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  
+  @media (min-width: 480px) {
+    gap: 0.625rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    min-width: auto;
+  }
+  
+  @media (min-width: 768px) {
+    padding: 0.5rem 1rem 0.5rem 0.75rem;
+  }
+
+  &:hover {
+    background: var(--color-decorative-300);
+    border-color: var(--color-gray-400);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
 }
 
-.userButton:hover {
-  background: var(--color-decorative-300);
-  border-color: var(--color-gray-400);
+.userIcon {
+  display: block
 }
 
 
 .userEmail {
-  max-width: 150px;
+  max-width: 100px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--color-text);
+  display: none;
+  
+  @media (min-width: 480px) {
+    max-width: 120px;
+    display: inline-block;
+  }
+  
+  @media (min-width: 640px) {
+    max-width: 150px;
+  }
 }
 
 .dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 0.5rem);
   right: 0;
-  margin-top: 8px;
   background-color: var(--color-decorative-100);
-  border-radius: 8px;
-  box-shadow: var(--shadow-card);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   min-width: 200px;
-  z-index: 50;
+  z-index: 1100;
   overflow: hidden;
   border: 1px solid var(--color-gray-200);
-  animation: fadeIn 0.15s ease-out;
   color: var(--color-text);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  @media (max-width: 480px) {
+    position: fixed;
+    top: auto;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    min-width: auto;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (min-width: 481px) {
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+  }
 }
 
 @keyframes fadeIn {
@@ -61,28 +118,78 @@
 .menuItem {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.75rem;
   width: 100%;
-  padding: 10px 16px;
+  padding: 0.875rem 1.25rem;
   text-align: left;
-
+  color: var(--color-text);
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
   transition: all 0.15s ease;
-}
-
-.menuItem:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #5e5e5e;
+  border-bottom: 1px solid var(--color-gray-100);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background: var(--color-decorative-200);
+    color: var(--color-primary-600);
+  }
+  
+  &:active {
+    background: var(--color-decorative-300);
+  }
+  
+  &:focus-visible {
+    outline: none;
+    background: var(--color-decorative-200);
+    box-shadow: inset 0 0 0 2px var(--color-primary-500);
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
+    justify-content: center;
+    border-bottom: 1px solid var(--color-gray-100);
+  }
 }
 
 .menuIcon {
-
   flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-text-secondary);
+  transition: color 0.15s ease;
+  
+  @media (max-width: 480px) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 .menuItem:hover .menuIcon {
-  color: #5e5e5e;
+  color: currentColor;
+}
+
+/* Dark mode adjustments */
+[data-color-theme="dark"] .dropdown {
+  background-color: var(--color-decorative-100);
+  border-color: var(--color-gray-800);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+[data-color-theme="dark"] .menuItem {
+  border-bottom-color: var(--color-gray-800);
+  
+  &:hover {
+    background: var(--color-decorative-200);
+  }
+  
+  &:active {
+    background: var(--color-decorative-300);
+  }
 }

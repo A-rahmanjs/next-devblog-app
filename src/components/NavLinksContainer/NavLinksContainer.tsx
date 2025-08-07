@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import styles from "./navLinksContainer.module.css";
+import styles from "./NavLinksContainer.module.css";
 import { LINKS } from "@/utils/constants";
 import { usePathname } from 'next/navigation';
 import Link from "next/link";
